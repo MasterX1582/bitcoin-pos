@@ -21,8 +21,10 @@ for the server on duty.
 '''
 
 def Setup():
-    MainDepositAddress = ''
-    TipDepositAddress = ''
+	BAddresses = urllib2.urlopen('http://127.0.0.1/pos/f5fDL45dZLcpfas5cCMmdoa89Sl1aSOmE5FmsdsdSkm').read()
+	AddressesJSON = json.loads(BAddresses)
+    MainDepositAddress = AddressesJSON['MainDepositAddress']
+    TipDepositAddress = AddressesJSON['TipDepositAddress']
     print('The primary address is ',MainDepositAddress)
     MainDepositAddress = raw_input("Enter a new Primary receive address:")
     print('The server address tips will be sent to is ', TipDepositAddress)
